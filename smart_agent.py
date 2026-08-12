@@ -11,5 +11,13 @@ def build_agent_emergency_prompt(raw_incident_report: str) -> str:
     
     Ensure you safely embed the raw_incident_report string within your prompt block.
     """
-    # YOUR CODE HERE
-    pass
+    return (
+        "You are a city emergency dispatch assistant. "
+        "Analyze the incident report and return EXACTLY one valid JSON object with keys: "
+        "'severity' and 'dispatch_unit'. "
+        "Allowed severity values are LOW, MEDIUM, or CRITICAL. "
+        "Allowed dispatch_unit values are FIRE, POLICE, or MEDICAL. "
+        "Do not include markdown, explanations, or extra keys. "
+        "Example output: {'severity': 'CRITICAL', 'dispatch_unit': 'FIRE'}. "
+        f"Incident report: {raw_incident_report}"
+    )

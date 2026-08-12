@@ -9,8 +9,12 @@ def calculate_supervised_loss(actual_y: list[float], predicted_y: list[float]) -
     TODO: Calculate the Mean Squared Error (MSE) between actual and predicted values.
     Formula: (1/n) * sum((actual - predicted)^2)
     """
-    # YOUR CODE HERE
-    pass
+    if len(actual_y) != len(predicted_y):
+        raise ValueError("actual_y and predicted_y must have the same length.")
+
+    squared_errors = [(actual - predicted) ** 2 for actual, predicted in zip(actual_y, predicted_y)]
+    return sum(squared_errors) / len(actual_y)
+
 
 def calculate_euclidean_distance(sensor_reading_a: list[float], sensor_reading_b: list[float]) -> float:
     """
@@ -18,5 +22,8 @@ def calculate_euclidean_distance(sensor_reading_a: list[float], sensor_reading_b
     Formula: sqrt(sum((a_i - b_i)^2))
     Used as the core distance metric for Unsupervised K-Means clustering.
     """
-    # YOUR CODE HERE
-    pass
+    if len(sensor_reading_a) != len(sensor_reading_b):
+        raise ValueError("Sensor readings must be the same length.")
+
+    squared_diff = sum((a - b) ** 2 for a, b in zip(sensor_reading_a, sensor_reading_b))
+    return math.sqrt(squared_diff)
